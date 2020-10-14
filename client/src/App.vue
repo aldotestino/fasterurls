@@ -1,20 +1,16 @@
 <template>
-<div id="app">
+<div class="container">
   <NavBar />
 
   <div class="form-container">
     <form class="form" @submit.prevent="createUrl">
-      <div class="field-group">
-        <div class="input">
-          <i class="fas fa-signature"></i>
-          <input v-model="userInput.alias" type="text" name="alias" placeholder="Alias" />
-        </div>
+      <div class="input">
+        <i class="fas fa-signature"></i>
+        <input v-model="userInput.alias" type="text" name="alias" placeholder="Alias" />
       </div>
-      <div class="field-group">
-        <div class="input">
-          <i class="fas fa-link"></i>
-          <input v-model="userInput.url" type="url" name="url" required placeholder="Url" />
-        </div>
+      <div class="input">
+        <i class="fas fa-link"></i>
+        <input v-model="userInput.url" type="url" name="url" required placeholder="Url" />
       </div>
       <div class="button-group">
         <button type="submit">Create</button>
@@ -48,8 +44,6 @@ const userInput = reactive({
   alias: '',
   url: ''
 });
-
-
 
 async function createUrl() {
   response.loading = true;
@@ -90,7 +84,7 @@ $background: #F3F5FA;
 $dark: #333;
 $disable: #d3d3d3;
 
-#app{
+.container{
   min-height: 100vh;
   background-color: $dark;
 
@@ -114,9 +108,9 @@ $disable: #d3d3d3;
     .form{
       border-radius: 10px;
       width: 90%;
-      max-width: 600px;
+      max-width: 400px;
       background-color: lighten($dark, $amount: 10);
-      padding: 30px;
+      padding: 30px 10px;
       box-shadow: 10px 10px 30px rgba($color: #000000, $alpha: 0.4);
       display: grid;
       grid-template-rows: repeat(3, 1fr);
@@ -149,7 +143,7 @@ $disable: #d3d3d3;
           outline: none;
           margin-left: 15px;
           flex: 1;
-          font-size: 24px;
+          font-size: 20px;
           font-family: 'Montserrat', sans-serif;
           &::selection {
             background-color: lighten($accent, $amount: 30);
