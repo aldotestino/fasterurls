@@ -110,7 +110,7 @@ $disable: #d3d3d3;
       width: 90%;
       max-width: 400px;
       background-color: lighten($dark, $amount: 10);
-      padding: 30px 10px;
+      padding: 20px;
       box-shadow: 10px 10px 30px rgba($color: #000000, $alpha: 0.4);
       display: grid;
       grid-template-rows: repeat(3, 1fr);
@@ -142,7 +142,7 @@ $disable: #d3d3d3;
           border: none;
           outline: none;
           margin-left: 15px;
-          flex: 1;
+          width: 100%;
           font-size: 20px;
           font-family: 'Montserrat', sans-serif;
           &::selection {
