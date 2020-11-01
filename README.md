@@ -2,7 +2,7 @@
 
 ## A basic url shortener
 
-### Version: 1.0.0
+### Version: 1.0.3
 
 ### Languages: 
 * Javascript,

@@ -2,13 +2,13 @@
 <div class="container">
   <NavBar />
 
-  <div class="form-container">
+  <div class="main">
     <form class="form" @submit.prevent="createUrl">
-      <div class="input">
+      <div class="input-container">
         <i class="fas fa-signature"></i>
         <input v-model="userInput.alias" type="text" name="alias" placeholder="Alias" />
       </div>
-      <div class="input">
+      <div class="input-container">
         <i class="fas fa-link"></i>
         <input v-model="userInput.url" type="url" name="url" required placeholder="Url" />
       </div>
@@ -16,12 +16,12 @@
         <button type="submit">Create</button>
       </div>
     </form>
-  </div>
 
-  <Result v-if="response.createdUrl" :url="response.createdUrl" />
+    <Result v-if="response.createdUrl" :url="response.createdUrl" />
 
-  <div v-if="response.loading" class="loading-container">
-    <img src="./assets/loading.gif" alt="" srcset="">
+    <div v-if="response.loading" class="loading-container">
+      <img src="./assets/loading.gif" alt="" srcset="">
+    </div>
   </div>
 
 </div>
@@ -37,7 +37,7 @@ const base_url = document.URL;
 
 const response = reactive({
   loading: false,
-  givenURL: ''
+  createdUrl: ''
 });
 
 const userInput = reactive({
@@ -54,7 +54,7 @@ async function createUrl() {
   const res = await fetch('/urls', {
     method: 'POST',
     headers: {
-      'content-type': 'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({alias, url})
   });
@@ -88,35 +88,32 @@ $disable: #d3d3d3;
   min-height: 100vh;
   background-color: $dark;
 
-  .loading-container{
-    padding-top: 50px;
+  .main {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    padding: 0 10px;
 
-    img{
-      width: 50px;
-      height: 50px;
+    .loading-container{
+      margin-top: 50px;
+      img{
+        width: 50px;
+        height: 50px;
+      }
     }
-  }
-
-  .form-container{
-    display: flex;
-    justify-content: center;
-    padding-top: 100px;
 
     .form{
+      margin-top: 50px;
       border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
+      width: 100%;
+      max-width: 500px;
       background-color: lighten($dark, $amount: 10);
-      padding: 20px;
+      padding: 30px;
       box-shadow: 10px 10px 30px rgba($color: #000000, $alpha: 0.4);
       display: grid;
       grid-template-rows: repeat(3, 1fr);
       row-gap: 20px;
-
-      .input{
+      .input-container{
         display: flex;
         align-items: center;
         padding: 5px 15px;
@@ -124,17 +121,14 @@ $disable: #d3d3d3;
         transition: border-bottom-color .2s linear;
         &:focus-within{
           border-bottom-color: $accent;
-          
           i{
             color: $accent;
           }
         }
-
         i{
           color: $disable;
           transition: color .2s linear;
         }
-
         input{
           background: none;
           caret-color: $accent;
@@ -143,19 +137,17 @@ $disable: #d3d3d3;
           outline: none;
           margin-left: 15px;
           width: 100%;
-          font-size: 20px;
+          font-size: 24px;
           font-family: 'Montserrat', sans-serif;
           &::selection {
             background-color: lighten($accent, $amount: 30);
           }
         }
       }
-
       .button-group {
         display: flex;
         justify-content: center;
         align-items: center;
-
         button{
           user-select: none;
           cursor: pointer;
